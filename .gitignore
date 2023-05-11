@@ -28,8 +28,8 @@
 [Oo]bj/
 _UpgradeReport_Files/
 [Pp]ackages/
-bin/
-obj/
+**/bin/
+**/obj/
 Thumbs.db
 Desktop.ini
 .DS_Store
