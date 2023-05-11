@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFrame Test</title>
+</head>
+<body>
+    <iframe id="output-frame-id" height="100%" width="100%"></iframe>
+<script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'http://localhost:80/');
+    xhr.onreadystatechange = handler;
+    xhr.responseType = 'blob';
+    xhr.setRequestHeader('Authorization', 'Bearer mytoken');
+    xhr.send();
+
+    function handler() {
+        if (this.readyState === this.DONE) {
+            if (this.status === 200) {
+                // this.response is a Blob, because we set responseType above
+                var data_url = URL.createObjectURL(this.response);
+                document.querySelector('#output-frame-id').src = data_url;
+            } 
+        }
+    }
+</script>
+</body>
+</html>

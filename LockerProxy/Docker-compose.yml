@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  proxy:
+    container_name: proxy
+    image: lockerproxy
+    environment:
+      - FILE_SERVER_URL=http://fileserver:8080
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - "80:80"
+  fileserver:
+    container_name: fileserver
+    image: nginxfileserver
+    build:
+      context: FileServer
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - /Users/jeremy/Pictures:/app/static:ro
